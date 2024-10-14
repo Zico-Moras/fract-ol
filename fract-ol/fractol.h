@@ -24,8 +24,8 @@
 
 //STRUCTS
 typedef struct s_mlx {
-	void	*mlx_connect;
-	void	*mlx_win;
+	void	*connect;
+	void	*win;
 } t_mlx;
 
 #endif
