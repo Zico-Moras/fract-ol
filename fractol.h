@@ -28,6 +28,10 @@
 //STRUCTS
 typedef struct s_img {
 	void	*img_ptr;
+	char	*pixel_ptr;
+	int	bits_per_pixel;
+	int	line_size;
+	int	endian;
 
 } t_img;
 typedef struct s_mlx {
