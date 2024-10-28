@@ -26,6 +26,10 @@
 # define SIZE_Y 720
 # define ERROR_MESSAGE "please enter maldelbrot or julia with the correct input"
 //STRUCTS
+typedef struct s_complex {
+	double	x;
+	double	y;
+} t_complex;
 typedef struct s_img {
 	void	*img_ptr;
 	char	*pixel_ptr;
@@ -35,19 +39,24 @@ typedef struct s_img {
 
 } t_img;
 typedef struct s_mlx {
+	//mlx
+	char	*name;
 	void	*connect;
 	void	*win;
+	//img
 	t_img	img;
+	//hooks
 } t_mlx;
 
 //functions
 //
 //mlx_funcs
 void	data_init(t_mlx *data);
-//
-void	color_screen(t_mlx *data, int color);
 int	rgb_encoder(int red, int green, int blue);
-int	rgb(int keysym, t_mlx *data);
+void	my_pixel_put(int x, int y, t_mlx *data, int color);
+void	data_exit(t_mlx *data);
+static void	malloc_error();
+
 
 
 

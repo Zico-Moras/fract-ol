@@ -1,11 +1,47 @@
 #include "fractol.h"
 
+static void	malloc_error()
+{
+	perror("Problem with malloc:");
+	exit(EXIT_FAILURE);
+
+}
 void	data_init(t_mlx *data)
 {
 	data->connect = mlx_init();
-	data->win = mlx_new_window(data->connect, SIZE_X, SIZE_Y, "fract-ol");
+	if (NULL == data->connect)
+	{
+		mlx_destroy_display(data->connect);
+		free(data->connect);
+		malloc_error();
+
+	}
+	data->win = mlx_new_window(data->connect, SIZE_X, SIZE_Y, data->name);
+	if (NULL == data->win)
+	{
+		mlx_destroy_display(data->connect);
+		free(data->connect);
+		malloc_error();
+	}
 	data->img.img_ptr = mlx_new_image(data->connect, SIZE_X, SIZE_Y);
-	data->img.pixel_ptr = mlx_get_data_addr(data->img.img_ptr, &data->img.bits_per_pixel, &data->img.line_size, &data->img.endian);
+	if (NULL == data->img.img_ptr)
+	{
+		mlx_destroy_window(data->connect, data->win);
+		mlx_destroy_display(data->connect);
+		free(data->connect);
+		malloc_error();
+	}
+	data->img.pixel_ptr = mlx_get_data_addr(data->img.img_ptr, &data->img.bits_per_pixel, &data->img.lize_size, &data->img.endian);
+
+
+}
+
+void	data_exit(t_mlx *data)
+{
+	mlx_destroy_image(data->connect, data->img.img_ptr);
+	mlx_destroy_window(data->connect, data->win);
+	mlx_destroy_display(data->connect);
+	free(data->connect);
 }
 
 void my_pixel_put(int x, int y, t_mlx *data, int color)

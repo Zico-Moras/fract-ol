@@ -17,11 +17,21 @@
 
 int	main(int ac, char **av)
 {
-	if (2 == ac && !strncmp(av[1], "mandelbrot", 10))
+	if ((2 == ac && !ft_strncmp(av[1], "mandelbrot", 10)) || 
+			(2 == ac && !ft_strncmp(av[1], "julia", 5)))
+	{
+		t_mlx	data;
 
-	else if (2 == ac && !strncmp(av[1], "julia", 5))
+		data_init(&data);
+		data.name = av[1];
+		mlx_loop(data.connect);
 
+		data_exit(&data);
+	}
 	else
-		write(1, "wrong input\n", 12);
+	{
+		write(1, "wrong input", 11);
+		exit(EXIT_FAILURE);
+	}
 
 }
