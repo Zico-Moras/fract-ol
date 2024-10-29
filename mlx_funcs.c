@@ -31,7 +31,17 @@ void	data_init(t_mlx *data)
 		free(data->connect);
 		malloc_error();
 	}
-	data->img.pixel_ptr = mlx_get_data_addr(data->img.img_ptr, &data->img.bits_per_pixel, &data->img.lize_size, &data->img.endian);
+	data->img.pixel_ptr = mlx_get_data_addr(data->img.img_ptr, &data->img.bits_per_pixel, &data->img.line_size, &data->img.endian);
+	if (NULL == data->img.pixel_ptr)
+	{
+		mlx_destroy_image(data->connect, &data->img);
+		mlx_destroy_window(data->connect, data->win);
+		mlx_destroy_display(data->connect);
+		free(data->connect);
+		malloc_error();
+	}
+	data->hypotenuse = 4;
+	data->iterations = 100;
 
 
 }
@@ -44,16 +54,6 @@ void	data_exit(t_mlx *data)
 	free(data->connect);
 }
 
-void my_pixel_put(int x, int y, t_mlx *data, int color)
-{
-    int offset;
-
-    // Calculate the correct memory offset
-    offset = (y * data->img.line_size) + x * (data->img.bits_per_pixel / 8);
-
-    // Set the pixel color at the calculated offset
-    *((unsigned int*)(data->img.pixel_ptr + offset)) = color;
-}
 
 int	rgb_encoder(int red, int green, int blue)
 {
