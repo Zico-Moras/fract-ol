@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 
 		data.name = av[1];
 		data_init(&data);
+		events_init(&data);
 		fractal_render(&data);
 
 		mlx_loop(data.connect);

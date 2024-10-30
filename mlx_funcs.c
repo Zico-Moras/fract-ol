@@ -41,7 +41,11 @@ void	data_init(t_mlx *data)
 		malloc_error();
 	}
 	data->hypotenuse = 4;
-	data->iterations = 100;
+	data->iterations = 42;
+	data->shift_x = 0.0;
+	data->shift_y = 0.0;
+	data->zoom = 1;
+	events_init(data);
 
 
 }
@@ -52,11 +56,20 @@ void	data_exit(t_mlx *data)
 	mlx_destroy_window(data->connect, data->win);
 	mlx_destroy_display(data->connect);
 	free(data->connect);
+	exit(EXIT_SUCCESS);
 }
 
 
+void	events_init(t_mlx *data)
+{
+	mlx_hook(data->win, KeyPress, KeyPressMask, key_handler, data);
+	mlx_hook(data->win, ButtonPress, ButtonPressMask, mouse_handler, data);
+	//mlx_hook(data->win, ButtonPress, (1L<<0), close);
+	//mlx_hook(data->win, ButtonPress, (1L<<0), close);
+
+
+}
 int	rgb_encoder(int red, int green, int blue)
 {
 	return (0 | red << 16 | green << 8 | blue);
 }
-

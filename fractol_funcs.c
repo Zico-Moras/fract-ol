@@ -49,9 +49,8 @@ static void	handle_pixel(t_mlx *data, int x, int y)
 	z.y = 0;
 	i = -1;
 
-	c.x = map_pixel(x, -2.666666, +2.666666, SIZE_X);
-	c.y = map_pixel(y, +1.5, -1.5, SIZE_Y);
-
+	c.x = (map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom) + data->shift_x;
+	c.y = (map_pixel(y, +1.5, -1.5, SIZE_Y) * data->zoom) + data->shift_y;
 	while (++i < data->iterations)
 	{
 		z = sum_complex(square_complex(z), c);

@@ -17,6 +17,7 @@
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
 # include <X11/keysym.h>
+# include <X11/X.h>
 # include <unistd.h>
 # include <math.h>
 # include <stdio.h>
@@ -71,6 +72,9 @@ typedef struct s_mlx {
 	//hooks
 	double	hypotenuse;
 	int	iterations;
+	double	shift_x;
+	double	shift_y;
+	double	zoom;
 } t_mlx;
 
 //functions
@@ -79,6 +83,7 @@ typedef struct s_mlx {
 void	data_init(t_mlx *data);
 void	data_exit(t_mlx *data);
 int	rgb_encoder(int red, int green, int blue);
+void	events_init(t_mlx *data);
 //
 double map_pixel(double unscaled_num, double new_min, double new_max, double old_max);
 void	my_pixel_put(int x, int y, t_mlx *data, int color);
@@ -86,7 +91,10 @@ void	fractal_render(t_mlx *data);
 //math
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z, t_complex c);
-
+//events hooks
+int	key_handler(int keysym, t_mlx *data);
+int	print_key(int keysym, t_mlx *data);
+int	mouse_handler(int keysym, int x, int y, t_mlx *data);
 
 
 

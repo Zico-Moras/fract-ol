@@ -161,7 +161,7 @@ SEE	minilibx-linux/man/man3/mlx_new_window.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SIZE_X	fractol.h	/^# define SIZE_X /;"	d
 SIZE_Y	fractol.h	/^# define SIZE_Y /;"	d
-SRC	Makefile	/^SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c$/;"	m
+SRC	Makefile	/^SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c events_funcs.c$/;"	m
 SRC	libft/Makefile	/^SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\\$/;"	m
 SRC	libft/ft_printf/Makefile	/^SRC = .\/files$/;"	m
 SRC	minilibx-linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \\$/;"	m
@@ -245,6 +245,7 @@ endian1	minilibx-linux/test/main.c	/^int	endian1;$/;"	v	typeref:typename:int
 endian2	minilibx-linux/test/main.c	/^int	endian2;$/;"	v	typeref:typename:int
 endian3	minilibx-linux/test/main.c	/^int	endian3;$/;"	v	typeref:typename:int
 endian4	minilibx-linux/test/main.c	/^int	endian4;$/;"	v	typeref:typename:int
+events_init	mlx_funcs.c	/^void	events_init(t_mlx *data)$/;"	f	typeref:typename:void
 expose_hook	minilibx-linux/mlx_int.h	/^	int					(*expose_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 expose_param	minilibx-linux/mlx_int.h	/^	void				*expose_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 expose_win1	minilibx-linux/test/main.c	/^int	expose_win1(void *p)$/;"	f	typeref:typename:int
@@ -326,6 +327,7 @@ img	fractol.h	/^	t_img	img;$/;"	m	struct:s_mlx	typeref:typename:t_img
 img_ptr	fractol.h	/^	void	*img_ptr;$/;"	m	struct:s_img	typeref:typename:void *
 iterations	fractol.h	/^	int	iterations;$/;"	m	struct:s_mlx	typeref:typename:int
 itoalen	libft/ft_itoa.c	/^static int	itoalen(int n)$/;"	f	typeref:typename:int	file:
+key_handler	events_funcs.c	/^int	key_handler(int keysym, t_mlx *data)$/;"	f	typeref:typename:int
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 key_param	minilibx-linux/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 key_win1	minilibx-linux/test/main.c	/^int	key_win1(int key,void *p)$/;"	f	typeref:typename:int
