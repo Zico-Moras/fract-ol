@@ -11,6 +11,21 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static void	mandel_vs_julia(t_complex *z, t_complex *c, t_mlx *data)
+{	
+	if (!ft_strncmp(data->name, "julia", 5))
+	{
+		c->x = data->julia_x;
+		c->y = data->julia_y;
+	}
+	else
+	{
+		c->x = z->x;
+		c->y = z->y;
+	}
+}
+
 /*
  * 
  *           |________1280________|
@@ -49,12 +64,11 @@ static void	handle_pixel(t_mlx *data, int x, int y)
 	int			i;
 	int			color;
 
-	z.x = 0;
-	z.y = 0;
-	i = -1;
-	c.x = (map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom)
+	i = 0;
+	z.x = (map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom)
 		+ data->shift_x;
-	c.y = (map_pixel(y, +1.5, -1.5, SIZE_Y) * data->zoom) - data->shift_y;
+	z.y = (map_pixel(y, +1.5, -1.5, SIZE_Y) * data->zoom) - data->shift_y;
+	mandel_vs_julia(&z, &c , data);
 	while (++i < data->iterations)
 	{
 		z = sum_complex(square_complex(z), c);

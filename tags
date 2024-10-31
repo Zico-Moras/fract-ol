@@ -62,7 +62,7 @@ DESCRIPTION	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH DESCRIPTION$/;"	s	titl
 ELECTRIC_BLUE	fractol.h	/^#define ELECTRIC_BLUE /;"	d
 ENV_DISPLAY	minilibx-linux/mlx_int.h	/^# define ENV_DISPLAY /;"	d
 EOF	minilibx-linux/configure	/^cat <<EOF$/;"	h
-ERROR_MESSAGE	fractol.h	/^# define ERROR_MESSAGE /;"	d
+ERROR_MESSAGE	fractol.h	/^#define ERROR_MESSAGE /;"	d
 ERR_NO_TRUECOLOR	minilibx-linux/mlx_int.h	/^# define ERR_NO_TRUECOLOR /;"	d
 FLAGS	Makefile	/^FLAGS = -Wall -Wextra -Werror -g -fsanitize=address -L$(MLX_DIR) -lmlx_Linux -L\/usr\/lib -I$(ML/;"	m
 FLAGS	libft/Makefile	/^FLAGS = -Wall -Wextra -Werror$/;"	m
@@ -161,7 +161,7 @@ SEE	minilibx-linux/man/man3/mlx_new_window.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SIZE_X	fractol.h	/^# define SIZE_X /;"	d
 SIZE_Y	fractol.h	/^# define SIZE_Y /;"	d
-SRC	Makefile	/^SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c events_funcs.c$/;"	m
+SRC	Makefile	/^SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c hooks.c string_funcs.c$/;"	m
 SRC	libft/Makefile	/^SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c\\$/;"	m
 SRC	libft/ft_printf/Makefile	/^SRC = .\/files$/;"	m
 SRC	minilibx-linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \\$/;"	m
@@ -231,7 +231,7 @@ data1	minilibx-linux/test/main.c	/^char	*data1;$/;"	v	typeref:typename:char *
 data2	minilibx-linux/test/main.c	/^char	*data2;$/;"	v	typeref:typename:char *
 data3	minilibx-linux/test/main.c	/^char	*data3;$/;"	v	typeref:typename:char *
 data4	minilibx-linux/test/main.c	/^char	*data4;$/;"	v	typeref:typename:char *
-data_exit	mlx_funcs.c	/^void	data_exit(t_mlx *data)$/;"	f	typeref:typename:void
+data_exit	mlx_funcs.c	/^int	data_exit(t_mlx *data)$/;"	f	typeref:typename:int
 data_init	mlx_funcs.c	/^void	data_init(t_mlx *data)$/;"	f	typeref:typename:void
 dealloc	libft/ft_get_next_line/get_next_line_utils.c	/^void	dealloc(t_list **list, t_list *clean_node, char *buf)$/;"	f	typeref:typename:void
 decrgb	minilibx-linux/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar	typeref:typename:int[6]
@@ -258,6 +258,7 @@ format	minilibx-linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img	typeref:typ
 found_newline	libft/ft_get_next_line/get_next_line_utils.c	/^int	found_newline(t_list *list)$/;"	f	typeref:typename:int
 fractal_render	fractol_funcs.c	/^void	fractal_render(t_mlx *data)$/;"	f	typeref:typename:void
 free_mem	libft/ft_split.c	/^static void	free_mem(char **ss, size_t j)$/;"	f	typeref:typename:void	file:
+ft_atodbl	string_funcs.c	/^double	ft_atodbl(char *s)$/;"	f	typeref:typename:double
 ft_atoi	libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f	typeref:typename:int
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f	typeref:typename:void
 ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f	typeref:typename:void *
@@ -293,7 +294,10 @@ ft_putun	libft/ft_printf/files/ft_put_func.c	/^int	ft_putun(unsigned int n)$/;"	
 ft_putun	libft/ft_printf/ft_put_func.c	/^int	ft_putun(unsigned int n)$/;"	f	typeref:typename:int
 ft_split	libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f	typeref:typename:char **
 ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typeref:typename:char *
+ft_strcmp	main.c	/^size_t	ft_strcmp(const char *s1, const char *s2)$/;"	f	typeref:typename:size_t
+ft_strcmp	string_funcs.c	/^size_t	ft_strcmp(const char *s1, const char *s2)$/;"	f	typeref:typename:size_t
 ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f	typeref:typename:char *
+ft_strings_isdigit	string_funcs.c	/^size_t	ft_strings_isdigit(const char *s1)$/;"	f	typeref:typename:size_t
 ft_striteri	libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f	typeref:typename:void
 ft_strjoin	libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
 ft_strlcat	libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dest, const char *src, size_t size)$/;"	f	typeref:typename:size_t
@@ -327,12 +331,16 @@ img	fractol.h	/^	t_img	img;$/;"	m	struct:s_mlx	typeref:typename:t_img
 img_ptr	fractol.h	/^	void	*img_ptr;$/;"	m	struct:s_img	typeref:typename:void *
 iterations	fractol.h	/^	int	iterations;$/;"	m	struct:s_mlx	typeref:typename:int
 itoalen	libft/ft_itoa.c	/^static int	itoalen(int n)$/;"	f	typeref:typename:int	file:
-key_handler	events_funcs.c	/^int	key_handler(int keysym, t_mlx *data)$/;"	f	typeref:typename:int
+julia_x	fractol.h	/^	double	julia_x;$/;"	m	struct:s_mlx	typeref:typename:double
+julia_y	fractol.h	/^	double	julia_y;$/;"	m	struct:s_mlx	typeref:typename:double
+key_handler	hooks.c	/^int	key_handler(int keysym, t_mlx *data)$/;"	f	typeref:typename:int
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 key_param	minilibx-linux/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 key_win1	minilibx-linux/test/main.c	/^int	key_win1(int key,void *p)$/;"	f	typeref:typename:int
 key_win2	minilibx-linux/test/main.c	/^int	key_win2(int key,void *p)$/;"	f	typeref:typename:int
 key_win3	minilibx-linux/test/main.c	/^int	key_win3(int key,void *p)$/;"	f	typeref:typename:int
+last_x	fractol.h	/^	double	last_x;$/;"	m	struct:s_mlx	typeref:typename:double
+last_y	fractol.h	/^	double	last_y;$/;"	m	struct:s_mlx	typeref:typename:double
 len_to_newline	libft/ft_get_next_line/get_next_line_utils.c	/^int	len_to_newline(t_list *list)$/;"	f	typeref:typename:int
 line_size	fractol.h	/^	int	line_size;$/;"	m	struct:s_img	typeref:typename:int
 local_endian	minilibx-linux/test/main.c	/^int	local_endian;$/;"	v	typeref:typename:int
@@ -351,7 +359,9 @@ main	minilibx-linux/test/main.c	/^int	main()$/;"	f	typeref:typename:int
 main	minilibx-linux/test/new_win.c	/^int main()$/;"	f	typeref:typename:int
 main	minilibx-linux/test/run_tests.sh	/^main(){$/;"	f
 malloc_error	mlx_funcs.c	/^static void	malloc_error()$/;"	f	typeref:typename:void	file:
-map_pixel	fractol_funcs.c	/^double map_pixel(double unscaled_num, double new_min, double new_max, double old_max)$/;"	f	typeref:typename:double
+mandel_vs_julia	fractol_funcs.c	/^static void	mandel_vs_julia(t_complex *z, t_complex *c, t_mlx *data)$/;"	f	typeref:typename:void	file:
+map_pixel	fractol_funcs.c	/^double	map_pixel(double unscaled_num, double new_min,$/;"	f	typeref:typename:double
+map_pixel	main.c	/^double map_pixel(double unscaled_num, double new_min, double new_max, double old_max)$/;"	f	typeref:typename:double
 mask	minilibx-linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
 mlx	minilibx-linux/test/main.c	/^void	*mlx;$/;"	v	typeref:typename:void *
 mlx	minilibx-linux/test/new_win.c	/^void *mlx;$/;"	v	typeref:typename:void *
@@ -423,12 +433,13 @@ mlx_xpm_file_to_image	minilibx-linux/mlx_lib_xpm.c	/^void	*mlx_xpm_file_to_image
 mlx_xpm_file_to_image	minilibx-linux/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)$/;"	f	typeref:typename:void *
 mlx_xpm_to_image	minilibx-linux/mlx_lib_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **data,int *width,int *height)$/;"	f	typeref:typename:void *
 mlx_xpm_to_image	minilibx-linux/mlx_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)$/;"	f	typeref:typename:void *
+mouse_handler	hooks.c	/^int	mouse_handler(int keysym, int x, int y, t_mlx *data)$/;"	f	typeref:typename:int
 mouse_hook	minilibx-linux/mlx_int.h	/^	int					(*mouse_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 mouse_param	minilibx-linux/mlx_int.h	/^	void				*mouse_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 mouse_win1	minilibx-linux/test/main.c	/^int	mouse_win1(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
 mouse_win2	minilibx-linux/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
 mouse_win3	minilibx-linux/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"	f	typeref:typename:int
-my_pixel_put	fractol_funcs.c	/^void my_pixel_put(int x, int y, t_mlx *data, int color)$/;"	f	typeref:typename:void
+my_pixel_put	fractol_funcs.c	/^void	my_pixel_put(int x, int y, t_mlx *data, int color)$/;"	f	typeref:typename:void
 name	fractol.h	/^	char	*name;$/;"	m	struct:s_mlx	typeref:typename:char *
 name	minilibx-linux/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name	typeref:typename:char *
 name	minilibx-linux/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col	typeref:typename:int
@@ -439,6 +450,7 @@ parse_args	minilibx-linux/configure	/^parse_args(){$/;"	f
 pix	minilibx-linux/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img	typeref:typename:Pixmap
 pixel_ptr	fractol.h	/^	char	*pixel_ptr;$/;"	m	struct:s_img	typeref:typename:char *
 polish_list	libft/ft_get_next_line/get_next_line.c	/^void	polish_list(t_list **list)$/;"	f	typeref:typename:void
+print_key	hooks.c	/^int	print_key(int keysym, t_mlx *data)$/;"	f	typeref:typename:int
 private_cmap	minilibx-linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar	typeref:typename:int
 pshm_format	minilibx-linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar	typeref:typename:int
 re	Makefile	/^re: fclean all$/;"	t
@@ -446,7 +458,6 @@ re	libft/Makefile	/^re: fclean all$/;"	t
 re	libft/ft_printf/Makefile	/^re:	fclean all$/;"	t
 re	minilibx-linux/Makefile	/^re	: clean all$/;"	t
 re	minilibx-linux/test/Makefile.mk	/^re: clean all$/;"	t
-rgb_encoder	mlx_funcs.c	/^int	rgb_encoder(int red, int green, int blue)$/;"	f	typeref:typename:int
 root	minilibx-linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
 s_col_name	minilibx-linux/mlx_int.h	/^struct	s_col_name$/;"	s
 s_complex	fractol.h	/^typedef struct s_complex {$/;"	s
@@ -459,8 +470,11 @@ s_win_list	minilibx-linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	minilibx-linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
 s_xvar	minilibx-linux/mlx_int.h	/^typedef struct	s_xvar$/;"	s
 saved_mode	minilibx-linux/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
-scale	main.c	/^double scale(double unscaled_num, double new_min, double new_max, double old_max)$/;"	f	typeref:typename:double
 screen	minilibx-linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
+shift	fractol.h	/^	int	shift;$/;"	m	struct:s_mlx	typeref:typename:int
+shift_down	hooks.c	/^int	shift_down(int keysym, t_mlx *data)$/;"	f	typeref:typename:int
+shift_x	fractol.h	/^	double	shift_x;$/;"	m	struct:s_mlx	typeref:typename:double
+shift_y	fractol.h	/^	double	shift_y;$/;"	m	struct:s_mlx	typeref:typename:double
 shm	minilibx-linux/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img	typeref:typename:XShmSegmentInfo
 shm_att_pb	minilibx-linux/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f	typeref:typename:int
 show	minilibx-linux/Makefile.mk	/^show:$/;"	t
@@ -507,3 +521,4 @@ x	fractol.h	/^	double	x;$/;"	m	struct:s_complex	typeref:typename:double
 xpm1_x	minilibx-linux/test/main.c	/^int	xpm1_x;$/;"	v	typeref:typename:int
 xpm1_y	minilibx-linux/test/main.c	/^int	xpm1_y;$/;"	v	typeref:typename:int
 y	fractol.h	/^	double	y;$/;"	m	struct:s_complex	typeref:typename:double
+zoom	fractol.h	/^	double	zoom;$/;"	m	struct:s_mlx	typeref:typename:double

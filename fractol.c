@@ -31,10 +31,15 @@ int	main(int ac, char **av)
 {
 	t_mlx	data;
 
-	if ((2 == ac && !ft_strncmp(av[1], "mandelbrot", 10))
-		|| (2 == ac && !ft_strncmp(av[1], "julia", 5)))
+	if ((2 == ac && !ft_strcmp(av[1], "mandelbrot"))
+		|| (4 == ac && !ft_strcmp(av[1], "julia")))
 	{
 		data.name = av[1];
+		if (!ft_strcmp(av[1], "julia"))
+		{
+			data.julia_x = ft_atodbl(av[1]);
+			data.julia_y = ft_atodbl(av[2]);
+		}
 		data_init(&data);
 		events_init(&data);
 		fractal_render(&data);
@@ -43,7 +48,7 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		write(1, "wrong input", 11);
+		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

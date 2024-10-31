@@ -26,7 +26,7 @@
 
 # define SIZE_X 1280
 # define SIZE_Y 720
-# define ERROR_MESSAGE "please enter maldelbrot or julia with the correct input"
+#define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
 #define BLACK         0x000000  // Black
 #define WHITE         0xFFFFFF  // White
@@ -78,6 +78,8 @@ typedef struct s_mlx {
 	double	shift_y;
 	double	zoom;
 	int	shift;
+	double	julia_x;
+	double	julia_y;
 } t_mlx;
 
 //functions
@@ -93,12 +95,20 @@ void	fractal_render(t_mlx *data);
 //math
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z, t_complex c);
+double	ft_atodbl(char *s);
 //events hooks
 int	key_handler(int keysym, t_mlx *data);
 int	print_key(int keysym, t_mlx *data);
 int	mouse_handler(int keysym, int x, int y, t_mlx *data);
 int	shift_down(int	keysym, t_mlx * data);
 //int	print_key(int keysym, t_mlx *data);
+//strings
+size_t	ft_strings_isdigit(const char *s1);
+size_t	ft_strcmp(const char *s1, const char *s2);
+double	ft_atodbl(char *s);
+
+
+
 
 
 

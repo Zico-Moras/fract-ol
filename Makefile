@@ -3,13 +3,14 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx_Linux.a
 
-SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c hooks.c
+SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c hooks.c string_funcs.c
 OBJ = $(SRC:.c=.o)
 NAME = fractol
 # -L flag indicates which directories need to be searched for libraries (.a files)
 # -I flad adds a directory that needs to be searched for Header files (.h files)
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=address -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz -L$(LIBFT_DIR) -lft
 CC = cc
+#-fsanitize=address
 HEADER = fractol.h
 
 all: $(NAME)
