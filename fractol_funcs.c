@@ -62,6 +62,8 @@ static void	handle_pixel(t_mlx *data, int x, int y)
 		}
 		my_pixel_put(x, y, data, NEON_PURPLE);
 	}
+	data->last_x = c.x;
+	data->last_y = c.y;
 }
 
 void	fractal_render(t_mlx *data)

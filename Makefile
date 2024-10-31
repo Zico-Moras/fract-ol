@@ -3,7 +3,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX_DIR = minilibx-linux
 MLX = $(MLX_DIR)/libmlx_Linux.a
 
-SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c events_funcs.c
+SRC = fractol.c mlx_funcs.c fractol_funcs.c math_funcs.c hooks.c
 OBJ = $(SRC:.c=.o)
 NAME = fractol
 # -L flag indicates which directories need to be searched for libraries (.a files)

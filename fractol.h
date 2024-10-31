@@ -72,17 +72,19 @@ typedef struct s_mlx {
 	//hooks
 	double	hypotenuse;
 	int	iterations;
+	double	last_x;
+	double	last_y;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
+	int	shift;
 } t_mlx;
 
 //functions
 //
 //mlx_funcs
 void	data_init(t_mlx *data);
-void	data_exit(t_mlx *data);
-int	rgb_encoder(int red, int green, int blue);
+int	data_exit(t_mlx *data);
 void	events_init(t_mlx *data);
 //
 double map_pixel(double unscaled_num, double new_min, double new_max, double old_max);
@@ -95,7 +97,8 @@ t_complex	sum_complex(t_complex z, t_complex c);
 int	key_handler(int keysym, t_mlx *data);
 int	print_key(int keysym, t_mlx *data);
 int	mouse_handler(int keysym, int x, int y, t_mlx *data);
-
+int	shift_down(int	keysym, t_mlx * data);
+//int	print_key(int keysym, t_mlx *data);
 
 
 

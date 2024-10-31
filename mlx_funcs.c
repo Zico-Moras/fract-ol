@@ -50,7 +50,7 @@ void	data_init(t_mlx *data)
 
 }
 
-void	data_exit(t_mlx *data)
+int	data_exit(t_mlx *data)
 {
 	mlx_destroy_image(data->connect, data->img.img_ptr);
 	mlx_destroy_window(data->connect, data->win);
@@ -63,13 +63,12 @@ void	data_exit(t_mlx *data)
 void	events_init(t_mlx *data)
 {
 	mlx_hook(data->win, KeyPress, KeyPressMask, key_handler, data);
+	mlx_hook(data->win, KeyRelease, KeyReleaseMask, shift_down, data);
+	//mlx_hook(data->win, KeyPress, KeyPressMask, print_key, data);
 	mlx_hook(data->win, ButtonPress, ButtonPressMask, mouse_handler, data);
+	mlx_hook(data->win, DestroyNotify, StructureNotifyMask, data_exit, data);
 	//mlx_hook(data->win, ButtonPress, (1L<<0), close);
 	//mlx_hook(data->win, ButtonPress, (1L<<0), close);
 
 
-}
-int	rgb_encoder(int red, int green, int blue)
-{
-	return (0 | red << 16 | green << 8 | blue);
 }
