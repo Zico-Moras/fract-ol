@@ -1,7 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol_funcs.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: francima <francima@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/31 19:16:54 by francima          #+#    #+#             */
+/*   Updated: 2024/10/31 19:16:55 by francima         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
-
-
-
 /*
  * 
  *           |________1280________|
@@ -19,38 +28,33 @@
  *           Z(1) = 0 + c
  *
  */
-
-double map_pixel(double unscaled_num, double new_min, double new_max, double old_max)
+double	map_pixel(double unscaled_num, double new_min,
+		double new_max, double old_max)
 {
 	return ((new_max - new_min) * unscaled_num / old_max + new_min);
 }
 
-
-void my_pixel_put(int x, int y, t_mlx *data, int color)
+void	my_pixel_put(int x, int y, t_mlx *data, int color)
 {
-    int offset;
+	int	offset;
 
-    // Calculate the correct memory offset
-    offset = (y * data->img.line_size) + x * (data->img.bits_per_pixel / 8);
-
-    // Set the pixel color at the calculated offset
-    *((unsigned int*)(data->img.pixel_ptr + offset)) = color;
+	offset = (y * data->img.line_size) + x * (data->img.bits_per_pixel / 8);
+	*((unsigned int *)(data->img.pixel_ptr + offset)) = color;
 }
 
 static void	handle_pixel(t_mlx *data, int x, int y)
 {
 	t_complex	z;
 	t_complex	c;
-	int	i;
-	int	color;
-
+	int			i;
+	int			color;
 
 	z.x = 0;
 	z.y = 0;
 	i = -1;
-
-	c.x = (map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom) + data->shift_x;
-	c.y = (map_pixel(y, +1.5, -1.5, SIZE_Y) * data->zoom) + data->shift_y;
+	c.x = (map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom)
+		+ data->shift_x;
+	c.y = (map_pixel(y, +1.5, -1.5, SIZE_Y) * data->zoom) - data->shift_y;
 	while (++i < data->iterations)
 	{
 		z = sum_complex(square_complex(z), c);

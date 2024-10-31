@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-int	shift_down(int	keysym, t_mlx * data)
+int	shift_down(int keysym, t_mlx *data)
 {
 	if (XK_Shift_L == keysym || XK_Shift_R == keysym)
 		data->shift = 0;
@@ -25,20 +25,30 @@ int	key_handler(int keysym, t_mlx *data)
 		data->iterations += 10;
 	else if (XK_minus == keysym)
 		data->iterations -= 10;
-	
 	fractal_render(data);
 	return (0);
 }
 
 int	mouse_handler(int keysym, int x, int y, t_mlx *data)
 {
-	x = 1;
-	y = 1;
-	if (Button5 == keysym && x) 
-		data->zoom *= 0.95;
-	if (Button4 == keysym && y) 
-		data->zoom *= 1.05;
+	double mouse_re = map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom + data->shift_x;
+	double mouse_im = map_pixel(y, -1.5, +1.5, SIZE_Y) * data->zoom + data->shift_y;
+	double zoom_factor;
 
+	// Check if we are zooming in or out
+	if (Button5 == keysym) // Zoom in
+		zoom_factor = 0.95;
+	else if (Button4 == keysym) // Zoom out
+		zoom_factor = 1.05;
+	else
+		return (0); // No relevant mouse event
+	data->shift_x = mouse_re + (data->shift_x - mouse_re) * zoom_factor;
+	data->shift_y = mouse_im + (data->shift_y - mouse_im) * zoom_factor;
+
+	// Apply the zoom
+	data->zoom *= zoom_factor;
+
+	// Render the fractal with updated values
 	fractal_render(data);
 	return (0);
 }
