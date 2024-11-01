@@ -297,7 +297,8 @@ ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typere
 ft_strcmp	main.c	/^size_t	ft_strcmp(const char *s1, const char *s2)$/;"	f	typeref:typename:size_t
 ft_strcmp	string_funcs.c	/^size_t	ft_strcmp(const char *s1, const char *s2)$/;"	f	typeref:typename:size_t
 ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f	typeref:typename:char *
-ft_strings_isdigit	string_funcs.c	/^size_t	ft_strings_isdigit(const char *s1)$/;"	f	typeref:typename:size_t
+ft_string_isdigit	main.c	/^size_t	ft_string_isdigit(const char *s1)$/;"	f	typeref:typename:size_t
+ft_string_isdigit	string_funcs.c	/^size_t	ft_string_isdigit(const char *s1)$/;"	f	typeref:typename:size_t
 ft_striteri	libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f	typeref:typename:void
 ft_strjoin	libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f	typeref:typename:char *
 ft_strlcat	libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dest, const char *src, size_t size)$/;"	f	typeref:typename:size_t

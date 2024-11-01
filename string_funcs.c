@@ -1,14 +1,25 @@
 #include "fractol.h"
 
-size_t	ft_strings_isdigit(const char *s1)
+size_t	ft_string_isdigit(const char *s1)
 {
 	size_t	i;
+	int	dot;
 
+	dot = 0;
 	i = 0;
 	while (s1[i])
 	{
-		if (s1[i] >= '0' && s1[i] <= '9')
+		if (((s1[i] >= '0' && s1[i] <= '9') || (s1[i] == '.')) && dot <= 1)
+		{
+			if (s1[i] == '.')
+			{
+				if ((s1[i + 1] >= '0' && s1[i + 1] <= '9'))
+					dot++;
+				else
+					return (1);
+			}
 			i++;
+		}
 		else
 			return (1);
 	}
