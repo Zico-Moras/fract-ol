@@ -6,15 +6,15 @@
 /*   By: francima <francima@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:16:54 by francima          #+#    #+#             */
-/*   Updated: 2024/10/31 19:16:55 by francima         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:53:11 by francima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 static void	mandel_vs_julia(t_complex *z, t_complex *c, t_mlx *data)
-{	
-	if (!ft_strncmp(data->name, "julia", 5))
+{
+	if (!ft_strcmp(data->name, "julia"))
 	{
 		c->x = data->julia_x;
 		c->y = data->julia_y;
@@ -65,10 +65,10 @@ static void	handle_pixel(t_mlx *data, int x, int y)
 	int			color;
 
 	i = 0;
-	z.x = (map_pixel(x, -2.666666, +2.666666, SIZE_X) * data->zoom)
+	z.x = (map_pixel(x, -2, 2, SIZE_X) * data->zoom)
 		+ data->shift_x;
-	z.y = (map_pixel(y, +1.5, -1.5, SIZE_Y) * data->zoom) - data->shift_y;
-	mandel_vs_julia(&z, &c , data);
+	z.y = (map_pixel(y, 2, -2, SIZE_Y) * data->zoom) - data->shift_y;
+	mandel_vs_julia(&z, &c, data);
 	while (++i < data->iterations)
 	{
 		z = sum_complex(square_complex(z), c);

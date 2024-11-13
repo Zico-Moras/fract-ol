@@ -1,9 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string_funcs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: francima <francima@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/13 16:46:30 by francima          #+#    #+#             */
+/*   Updated: 2024/11/13 16:46:44 by francima         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
+
+size_t	ft_strlen(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < ft_strlen(s))
+		write(fd, &s[i++], 1);
+}
 
 size_t	ft_string_isdigit(const char *s1)
 {
 	size_t	i;
-	int	dot;
+	int		dot;
 
 	dot = 0;
 	i = 0;
