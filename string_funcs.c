@@ -40,7 +40,7 @@ size_t	ft_string_isdigit(const char *s1)
 	i = -1;
 	if (s1[i + 1] == '-')
 	{
-		if (ft_isdigit(s1[i + 2]))
+		if (s1[i + 2] >= '0' && s1[i + 2] <= '9')
 			i++;
 		else
 			return (0);
