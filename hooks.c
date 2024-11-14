@@ -63,10 +63,3 @@ int	mouse_handler(int keysym, int x, int y, t_mlx *data)
 	fractal_render(data);
 	return (0);
 }
-
-int	print_key(int keysym, t_mlx *data)
-{
-	printf("%d\n", keysym);
-	data->win = data->win;
-	return (0);
-}

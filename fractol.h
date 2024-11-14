@@ -103,10 +103,8 @@ t_complex	sum_complex(t_complex z, t_complex c);
 double		ft_atodbl(char *s);
 // events hooks
 int			key_handler(int keysym, t_mlx *data);
-int			print_key(int keysym, t_mlx *data);
 int			mouse_handler(int keysym, int x, int y, t_mlx *data);
 int			shift_down(int keysym, t_mlx *data);
-// int	print_key(int keysym, t_mlx *data);
 // strings
 size_t		ft_string_isdigit(const char *s1);
 size_t		ft_strcmp(const char *s1, const char *s2);
