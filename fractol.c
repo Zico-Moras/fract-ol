@@ -32,8 +32,8 @@ int	main(int ac, char **av)
 	t_mlx	data;
 
 	if ((2 == ac && !ft_strcmp(av[1], "mandelbrot"))
-		|| (4 == ac && !ft_strcmp(av[1], "julia") && (!ft_string_isdigit(av[2]))
-			&& (!ft_string_isdigit(av[3]))))
+		|| (4 == ac && !ft_strcmp(av[1], "julia") && (ft_string_isdigit(av[2]))
+			&& (ft_string_isdigit(av[3]))))
 	{
 		data.name = av[1];
 		if (!ft_strcmp(av[1], "julia"))

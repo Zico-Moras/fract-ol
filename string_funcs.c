@@ -33,28 +33,31 @@ void	ft_putstr_fd(char *s, int fd)
 
 size_t	ft_string_isdigit(const char *s1)
 {
-	size_t	i;
-	int		dot;
+	int	i;
+	int	dot;
 
 	dot = 0;
-	i = 0;
-	while (s1[i])
+	i = -1;
+	if (s1[i + 1] == '-')
 	{
-		if (((s1[i] >= '0' && s1[i] <= '9') || (s1[i] == '.')) && dot <= 1)
-		{
-			if (s1[i] == '.')
-			{
-				if ((s1[i + 1] >= '0' && s1[i + 1] <= '9'))
-					dot++;
-				else
-					return (1);
-			}
+		if (ft_isdigit(s1[i + 2]))
 			i++;
-		}
 		else
-			return (1);
+			return (0);
 	}
-	return (0);
+	while (s1[++i])
+	{
+		if (!(s1[i] >= '0' && s1[i] <= '9'))
+		{
+			if (s1[i] == '.' && (s1[i + 1] >= '0' && s1[i + 1] <= '9'))
+				dot++;
+			else
+				return (0);
+		}
+		if (dot > 1)
+			return (0);
+	}
+	return (1);
 }
 
 size_t	ft_strcmp(const char *s1, const char *s2)
